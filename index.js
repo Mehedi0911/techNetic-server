@@ -35,8 +35,15 @@ client.connect(err => {
 
   //all get requests.....
   //all services
-  app.get('/products', (req, res) => {
+  app.get('/allProducts', (req, res) => {
     products.find()
+    .toArray((err, pd) =>{
+      res.send(pd)
+    })
+  })
+
+  app.get('/productsTag', (req, res) => {
+    products.find({tags:req.query.tags})
     .toArray((err, pd) =>{
       res.send(pd)
     })
